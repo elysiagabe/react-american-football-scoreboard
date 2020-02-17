@@ -113,6 +113,8 @@
   justify-content: space-around;
 }
 
+.gameButtons__newQuarter,
+.gameButtons__resetGame,
 .homeButtons__touchdown,
 .homeButtons__fieldGoal,
 .awayButtons__touchdown,
