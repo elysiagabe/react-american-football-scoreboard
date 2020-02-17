@@ -8,6 +8,23 @@ function App() {
 
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
+  const [quarter, setQuarter] = useState(1);
+
+  const resetGame = () => {
+    setHomeScore(0);
+    setAwayScore(0);
+    setQuarter(1);
+  }
+
+  const clickQuarter = () => {
+    if (quarter < 4) {
+      setQuarter(quarter + 1);
+    } else if (quarter === 4 && homeScore === awayScore) {
+      setQuarter('OT');
+    } else {
+      setQuarter('End');
+    }
+  }
 
   return (
     <div className="container">
@@ -26,9 +43,13 @@ function App() {
             <div className="away__score">{awayScore}</div>
           </div>
         </div>
-        <BottomRow />
+        <BottomRow quarter={quarter}/>
       </section>
       <section className="buttons">
+        <div className="gameButtons">
+          <button className="gameButtons__newQuarter" onClick={() => clickQuarter()}>New Quarter</button>
+          <button className="gameButtons__resetGame" onClick={() => resetGame()}>Reset Game</button>
+        </div>
         <div className="homeButtons">
           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
           <button className="homeButtons__touchdown" onClick={() => setHomeScore(homeScore + 7)}>Home Touchdown</button>
